@@ -32,34 +32,32 @@ int main(int argc, char *argv[])
     int i, j;
 
    
-   unsigned long long int size = atoi (argv[1]); // Size
-   unsigned long long int repw = atoi (argv[2]); // Number of repetitions 
-   unsigned long long int repm = atoi (argv[3]); // Number of measure repetitions
-    //double **a= InitAndFillMatrix(0);
+   unsigned long long int arr_size = atoi (argv[1]); // Size
+   unsigned long long int repwarm = atoi (argv[2]); // Number of repetitions 
+   unsigned long long int repmeas = atoi (argv[3]); // Number of measure repetitions
+  
    for (j=0; j < NB; j++) {
-      //Dynamic allocation
-     // double (*a)[size] = malloc (size * size * sizeof a[0][0]);
 
       srand(0);
-      double **a=InitAndFillMatrix (size);
+      double **a=InitAndFillMatrix (arr_size);
 
       /* warmup (repw repetitions in first meta, 1 repet in next metas) */
       if (j == 0) {
-         for (i=0; i<repw; i++)
-            baseline (size, a);
+         for (i=0; i<repwarm; i++)
+            baseline (arr_size, a);
       } else {
-         baseline (size, a);
+         baseline (arr_size, a);
       }
 
       /* measure repm repetitions */
       uint64_t t1 = rdtsc();
-      for (i=0; i<repm; i++)
-         baseline (size, a);
+      for (i=0; i<repmeas; i++)
+         baseline (arr_size, a);
       uint64_t t2 = rdtsc();
 
       /* print performance */
       printf ("%.2f cycles/FMA\n",
-              (t2 - t1) / ((float) size * size * size * repm));
+              (t2 - t1) / ((float) arr_size * arr_size * arr_size * repmeas));
 
       // free array
       free (a);
