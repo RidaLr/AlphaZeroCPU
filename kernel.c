@@ -10,7 +10,7 @@ typedef unsigned long long u64;
 
 #ifdef OPT1
 /* loop unrolling OPTIMIZATION */
-float OPT1(unsigned n, double *a[])
+float baseline(unsigned n, double *a[])
 {
     unsigned i, j, k, l;
     float s = 0.0;
@@ -30,7 +30,7 @@ float OPT1(unsigned n, double *a[])
 
 
 /* OPT2 */
-float OPT2(unsigned n, double *a[])
+float baseline(unsigned n, double *a[])
 {
     unsigned i, j;
     float s = 0.0;
