@@ -12,5 +12,3 @@ return s ;
 }
 Compilateur et options de r´ef´erence: gcc -O2 ou gcc -O3.
 <br><br>
-
-Pour compiler le projet utilisant le Makefile il faut exécuter la commande suivante : make OPT={NOOPT, OPT1 ...}
