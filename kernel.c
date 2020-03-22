@@ -13,10 +13,10 @@ typedef unsigned long long u64;
 float baseline(unsigned n, double *a[])
 {
     unsigned i, j, k, l;
-    float s = 0.0;
+    double s = 0.0;
     u64 new_n = n - (n%2);
-    for (j = 0; j < n; j+=4)
-        for (i = 0; i < n; i++)
+    for (j = 0; j < new_n; j+=4)
+        for (i = 0; i < new_n; i++)
             
             s += a[i][j] + a[i][j+1] + a[i][j+2] + a[i][j+3]; printf("i j\n");
 
@@ -24,7 +24,7 @@ float baseline(unsigned n, double *a[])
         for (l = new_n; l < n; l++)
             s += a[k][l]; 
             printf("new_n = %lld \n",new_n);
-    return s;
+    return (float)s;
 }
 #elif defined OPT2
 
@@ -42,10 +42,10 @@ float baseline(unsigned n, double *a[])
 float baseline(unsigned n, double *a[])
 {
     unsigned i, j;
-    float s = 0.0;
+    double s = 0.0;
     for (j = 0; j < n; j++)
         for (i = 0; i < n; i++)
             s += a[i][j];
-    return s;
+    return (float)s;
 }
 #endif
