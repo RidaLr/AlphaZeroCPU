@@ -3,10 +3,10 @@
 echo -e "[BEGIN]\n"
 #GCC FLAGS
 echo -e "Setting cpupower to 4600000\n"
-cpupower frequency-set -u 4600000
+sudo cpupower frequency-set -u 4600000
 
 echo -e "Settinng cpu high performance\n"
-cpupower frequency-set -g performance
+sudo cpupower frequency-set -g performance
 
 FLAG[0]="-O2"
 FLAG[1]="-O3"
