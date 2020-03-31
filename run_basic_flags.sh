@@ -44,9 +44,9 @@ do
 
     #   RAM
     echo -e "Runnning likwid for this flag on RAM"
-    likwid-perfctr -g MEM ./app 14654 5 10 11 taskset -c S0:0 > "GCC_OPT"$i/likwid_MEM_results.txt
+    likwid-perfctr -g MEM ./app 14654 5 10 taskset -c S0:0 > "GCC_OPT"$i/likwid_MEM_results.txt
     echo -e "Runnning maqao for this flag on LRAM"
-    maqao oneview --create-report=one binary=app -xp="GCC_OPT$i/maqao_RAM_RESULTS" lprof_params="--use-OS-timers"  run_command="<binary>  14654 5 10 11" pinning_command="taskset -c 0"
+    maqao oneview --create-report=one binary=app -xp="GCC_OPT$i/maqao_RAM_RESULTS" lprof_params="--use-OS-timers"  run_command="<binary>  14654 5 10" pinning_command="taskset -c 0"
     
     
 done
@@ -88,9 +88,9 @@ do
 
     #   RAM
     echo -e "Runnning likwid for this flag on RAM"
-    likwid-perfctr -g MEM ./app 14654 5 10 11 taskset -c S0:0 > "ICC_OPT"$i/likwid_MEM_results.txt
+    likwid-perfctr -g MEM ./app 14654 5 10 taskset -c S0:0 > "ICC_OPT"$i/likwid_MEM_results.txt
     echo -e "Runnning maqao for this flag on LRAM"
-    maqao oneview --create-report=one binary=app -xp="ICC_OPT$i/maqao_RAM_RESULTS" run_command="<binary>  14654 5 10 11" pinning_command="taskset -c 0"
+    maqao oneview --create-report=one binary=app -xp="ICC_OPT$i/maqao_RAM_RESULTS" run_command="<binary>  14654 5 10" pinning_command="taskset -c 0"
     
 done
 #
