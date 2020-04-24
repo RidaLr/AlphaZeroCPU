@@ -1,0 +1,8 @@
+/home/pavel/Documents/COURS/IATIC_4/AOA/Alpha0_CPU//kernel.c: 37 - 39
+--------------------------------------------------------------------------------
+
+37:     for (j = 0; j < n; j++)
+38:         for (i = 0; i < n; i++)
+39:             s += a[i][j];
+40:     return (float)s;
+41: }

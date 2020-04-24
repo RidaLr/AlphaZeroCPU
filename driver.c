@@ -11,11 +11,10 @@
 // Le nombre de Méta-repetitions
 #define NB_META 31
 
-
 typedef unsigned long long u64;
 
 // Initialiser un tableau
-static void init_array (int n, double a[n][n]);
+static void init_array(int n, double a[n][n]);
 
 //Afficher un tableau
 void displayMAtrix(int n, double **tab);
@@ -28,8 +27,7 @@ extern float baseline(unsigned n, double a[n][n]);
 
 //Permet de trier un tableau
 void sort(uint64_t *a, int n);
-
-
+void sort_f(float *a, int n);
 
 int main(int argc, char *argv[])
 {
@@ -47,12 +45,23 @@ int main(int argc, char *argv[])
     unsigned long long int repmeas = atoi(argv[3]);  // Number of measure repetitions
 
     uint64_t *tab_rdtsc = (uint64_t *)malloc(sizeof(uint64_t) * NB_META);
-    
+    float *cycles_iter = (float *)malloc(sizeof(uint64_t) * NB_META);
+
+    FILE *data_file = NULL;
+    FILE *medianes_file = NULL;
+    data_file = fopen("data_results", "w");
+    medianes_file = fopen("RAM_results/GCC/ram_medianes", "a");
+
+    if (data_file == NULL)
+    {
+        perror("Cant create ouput data file !\n");
+        exit(EXIT_FAILURE);
+    }
     for (j = 0; j < NB_META; j++)
     {
-        double (*a)[arr_size] = malloc (arr_size * arr_size * sizeof a[0][0]);
+        double(*a)[arr_size] = malloc(arr_size * arr_size * sizeof a[0][0]);
         srand(0);
-        init_array (arr_size, a);
+        init_array(arr_size, a);
 
         /* warmup (repw repetitions in first meta, 1 repet in next metas) */
         if (j == 0)
@@ -65,44 +74,44 @@ int main(int argc, char *argv[])
             baseline(arr_size, a);
         }
 
-        double time_spent = 0.0;
-
-        clock_t begin = clock();
-
         /* measure repm repetitions */
+        float res = 0.0;
         uint64_t t1 = rdtsc();
         for (i = 0; i < repmeas; i++)
-            baseline(arr_size, a);
+            res = baseline(arr_size, a);
         uint64_t t2 = rdtsc();
-        
-        clock_t end = clock();
-
-        /* print performance */
-        printf("%.2f cycles/itérations\n",
-               (t2 - t1) / ((float)arr_size * arr_size * repmeas));
-        
-        time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
-        
-        printf("Time with clock() = %f\n", time_spent);
-        
+        printf("res = %lf\n", res);
         tab_rdtsc[j] = t2 - t1;
+        /* print performance */
+        printf("%.2f cycles/itérations META N° %d | rdtsc = %ld\n \n",
+               (t2 - t1) / ((float)arr_size * arr_size * repmeas), j, tab_rdtsc[j]);
 
+        //write result in file
+        fprintf(data_file, "%d; %f\n", j, (t2 - t1) / ((float)arr_size * arr_size * repmeas));
+        cycles_iter[j] = (t2 - t1) / ((float)arr_size * arr_size * repmeas);
         // free array
         free(a);
     }
-    
+
     sort(tab_rdtsc, NB_META);
-    printf("[Stabilité des mesures = %f%%] mediane=%ld min = %ld max = %ld INDEX_mediane = %d\n", (float)((float)(tab_rdtsc[(int)(NB_META/2)+1] - tab_rdtsc[0]) / tab_rdtsc[0]), tab_rdtsc[(int)(NB_META/2)+1], tab_rdtsc[0], tab_rdtsc[NB_META - 1], (int)(NB_META/2)+1);
-    printf("RDTSC sur mediane = %ld\n", tab_rdtsc[(int)(NB_META/2)+1]);
+    sort_f(cycles_iter, NB_META);
+    printf("[Stabilité des mesures = %f%%] mediane=%ld min = %ld max = %ld INDEX_mediane = %d\n", (float)((float)(tab_rdtsc[(int)(NB_META / 2)] - tab_rdtsc[0]) / tab_rdtsc[0]), tab_rdtsc[(int)(NB_META / 2)], tab_rdtsc[0], tab_rdtsc[NB_META - 1], (int)(NB_META / 2));
+    printf("cycles/iter sur mediane = %f\n", cycles_iter[(int)(NB_META / 2)]);
+    fprintf(medianes_file, "%f\n", cycles_iter[(int)(NB_META / 2)]);
+    fclose(data_file);
+    fclose(medianes_file);
+
     return EXIT_SUCCESS;
 }
 
-static void init_array (int n, double a[n][n]) {
-   int i, j;
+static void init_array(int n, double a[n][n])
+{
+    int i, j;
 
-   for (i=0; i<n; i++)
-      for (j=0; j<n; j++)
-         a[i][j] = (double) rand() / RAND_MAX;
+    for (i = 0; i < n; i++)
+        for (j = 0; j < n; j++){
+            a[i][j] = 1.0f;//(double)rand() / RAND_MAX;
+        }
 }
 
 void displayMAtrix(int n, double **tab)
@@ -116,7 +125,6 @@ void displayMAtrix(int n, double **tab)
     }
 }
 
-
 void sort(uint64_t *a, int n)
 {
     for (uint64_t i = 0; i < n; i++)
@@ -124,6 +132,18 @@ void sort(uint64_t *a, int n)
             if (a[i] > a[j])
             {
                 uint64_t tmp = a[i];
+
+                a[i] = a[j];
+                a[j] = tmp;
+            }
+}
+void sort_f(float *a, int n)
+{
+    for (uint64_t i = 0; i < n; i++)
+        for (uint64_t j = i + 1; j < n; j++)
+            if (a[i] > a[j])
+            {
+                float tmp = a[i];
 
                 a[i] = a[j];
                 a[j] = tmp;

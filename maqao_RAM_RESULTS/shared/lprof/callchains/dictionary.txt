@@ -1,0 +1,46 @@
+main - /home/pavel/Documents/COURS/IATIC_4/AOA/Alpha0_CPU/driver.c:68
+binary
+__libc_start_main - :0
+libc-2.29.so
+main - /home/pavel/Documents/COURS/IATIC_4/AOA/Alpha0_CPU/driver.c:78
+main - /home/pavel/Documents/COURS/IATIC_4/AOA/Alpha0_CPU/driver.c:77
+main - /home/pavel/Documents/COURS/IATIC_4/AOA/Alpha0_CPU/driver.c:66
+clear_subpage
+kernel
+clear_huge_page
+do_huge_pmd_anonymous_page
+__handle_mm_fault
+handle_mm_fault
+__do_page_fault
+page_fault
+unknown kernel region
+init_array - /home/pavel/Documents/COURS/IATIC_4/AOA/Alpha0_CPU/driver.c:111
+prepare_exit_to_usermode
+swapgs_restore_regs_and_return_to_usermode
+baseline - /home/pavel/Documents/COURS/IATIC_4/AOA/Alpha0_CPU/kernel.c:39
+__alloc_pages_nodemask
+alloc_pages_vma
+release_pages
+tlb_flush_mmu
+tlb_finish_mmu
+unmap_region
+__do_munmap
+__vm_munmap
+__x64_sys_munmap
+do_syscall_64
+entry_SYSCALL_64_after_hwframe
+__munmap - :0
+_cond_resched
+rcu_core
+__softirqentry_text_start
+irq_exit
+smp_apic_timer_interrupt
+apic_timer_interrupt
+fq_flush_timeout
+call_timer_fn
+run_timer_softirq
+baseline - /home/pavel/Documents/COURS/IATIC_4/AOA/Alpha0_CPU/kernel.c:38
+get_page_from_freelist
+mem_cgroup_uncharge
+__put_compound_page
+mem_cgroup_try_charge_delay

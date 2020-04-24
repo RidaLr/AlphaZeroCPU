@@ -1,0 +1,5 @@
+Node;Process;Thread;System (%);Binary (%);Time (s);Math (%);OMP (%);String (%);Others (%);IO (%);Memory (%);MPI (%);Pthread (%);
+_ALL;_ALL;_ALL;13.77;86.23;53.49;0;0;0;0;0;0;0;0;
+kali;_ALL;_ALL;13.77;86.23;53.49;0;0;0;0;0;0;0;0;
+kali;25924;_ALL;13.77;86.23;53.49;0;0;0;0;0;0;0;0;
+kali;25924;25924;13.77;86.23;53.49;0;0;0;0;0;0;0;0;

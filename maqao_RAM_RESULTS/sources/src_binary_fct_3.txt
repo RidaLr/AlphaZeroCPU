@@ -1,0 +1,11 @@
+/home/pavel/Documents/COURS/IATIC_4/AOA/Alpha0_CPU//driver.c: 105 - 112
+--------------------------------------------------------------------------------
+
+105: static void init_array(int n, double a[n][n])
+106: {
+107:     int i, j;
+108: 
+109:     for (i = 0; i < n; i++)
+110:         for (j = 0; j < n; j++)
+111:             a[i][j] = (double)rand() / RAND_MAX;
+112: }

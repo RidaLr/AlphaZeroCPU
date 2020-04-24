@@ -1,0 +1,179 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz
+CPU type:	Intel Kabylake processor
+CPU clock:	1.99 GHz
+--------------------------------------------------------------------------------
+9.76 cycles/itérations META N° 0 | rdtsc = 409297702
+ 
+9.74 cycles/itérations META N° 1 | rdtsc = 408580087
+ 
+9.70 cycles/itérations META N° 2 | rdtsc = 406934839
+ 
+9.71 cycles/itérations META N° 3 | rdtsc = 407346469
+ 
+9.70 cycles/itérations META N° 4 | rdtsc = 406709651
+ 
+9.75 cycles/itérations META N° 5 | rdtsc = 408724297
+ 
+9.69 cycles/itérations META N° 6 | rdtsc = 406433039
+ 
+9.77 cycles/itérations META N° 7 | rdtsc = 409590390
+ 
+9.71 cycles/itérations META N° 8 | rdtsc = 407129846
+ 
+9.76 cycles/itérations META N° 9 | rdtsc = 409331454
+ 
+9.71 cycles/itérations META N° 10 | rdtsc = 407372444
+ 
+9.70 cycles/itérations META N° 11 | rdtsc = 406729481
+ 
+9.71 cycles/itérations META N° 12 | rdtsc = 407108184
+ 
+9.76 cycles/itérations META N° 13 | rdtsc = 409150860
+ 
+9.70 cycles/itérations META N° 14 | rdtsc = 406820427
+ 
+9.72 cycles/itérations META N° 15 | rdtsc = 407483651
+ 
+9.70 cycles/itérations META N° 16 | rdtsc = 406778625
+ 
+9.73 cycles/itérations META N° 17 | rdtsc = 408247950
+ 
+9.67 cycles/itérations META N° 18 | rdtsc = 405752077
+ 
+9.75 cycles/itérations META N° 19 | rdtsc = 409005769
+ 
+9.73 cycles/itérations META N° 20 | rdtsc = 408212948
+ 
+9.75 cycles/itérations META N° 21 | rdtsc = 408715098
+ 
+9.73 cycles/itérations META N° 22 | rdtsc = 407857228
+ 
+9.74 cycles/itérations META N° 23 | rdtsc = 408470637
+ 
+9.70 cycles/itérations META N° 24 | rdtsc = 406805120
+ 
+9.73 cycles/itérations META N° 25 | rdtsc = 408080980
+ 
+9.77 cycles/itérations META N° 26 | rdtsc = 409670619
+ 
+9.71 cycles/itérations META N° 27 | rdtsc = 407355828
+ 
+9.70 cycles/itérations META N° 28 | rdtsc = 406668344
+ 
+9.72 cycles/itérations META N° 29 | rdtsc = 407492413
+ 
+9.76 cycles/itérations META N° 30 | rdtsc = 409153264
+ 
+9.69 cycles/itérations META N° 31 | rdtsc = 406344539
+ 
+9.74 cycles/itérations META N° 32 | rdtsc = 408527919
+ 
+9.74 cycles/itérations META N° 33 | rdtsc = 408567982
+ 
+9.68 cycles/itérations META N° 34 | rdtsc = 405777558
+ 
+9.72 cycles/itérations META N° 35 | rdtsc = 407626041
+ 
+9.70 cycles/itérations META N° 36 | rdtsc = 406843944
+ 
+9.69 cycles/itérations META N° 37 | rdtsc = 406518487
+ 
+9.69 cycles/itérations META N° 38 | rdtsc = 406507140
+ 
+9.76 cycles/itérations META N° 39 | rdtsc = 409191994
+ 
+9.71 cycles/itérations META N° 40 | rdtsc = 407073219
+ 
+9.68 cycles/itérations META N° 41 | rdtsc = 406066103
+ 
+9.70 cycles/itérations META N° 42 | rdtsc = 406866838
+ 
+9.74 cycles/itérations META N° 43 | rdtsc = 408672734
+ 
+9.69 cycles/itérations META N° 44 | rdtsc = 406439829
+ 
+9.72 cycles/itérations META N° 45 | rdtsc = 407534362
+ 
+9.69 cycles/itérations META N° 46 | rdtsc = 406340265
+ 
+9.71 cycles/itérations META N° 47 | rdtsc = 407262568
+ 
+9.70 cycles/itérations META N° 48 | rdtsc = 406858192
+ 
+9.71 cycles/itérations META N° 49 | rdtsc = 407351856
+ 
+9.67 cycles/itérations META N° 50 | rdtsc = 405597642
+ 
+9.72 cycles/itérations META N° 51 | rdtsc = 407565690
+ 
+9.73 cycles/itérations META N° 52 | rdtsc = 407890727
+ 
+9.72 cycles/itérations META N° 53 | rdtsc = 407517493
+ 
+9.64 cycles/itérations META N° 54 | rdtsc = 404465332
+ 
+9.65 cycles/itérations META N° 55 | rdtsc = 404857343
+ 
+9.65 cycles/itérations META N° 56 | rdtsc = 404555863
+ 
+10.62 cycles/itérations META N° 57 | rdtsc = 445526538
+ 
+9.71 cycles/itérations META N° 58 | rdtsc = 407223714
+ 
+9.67 cycles/itérations META N° 59 | rdtsc = 405752017
+ 
+9.64 cycles/itérations META N° 60 | rdtsc = 404352795
+ 
+--------------------------------------------------------------------------------
+Group 1: MEM
++-----------------------+---------+--------------+-------------+--------+--------+--------------+--------+--------+--------+
+|         Event         | Counter |    Core 0    |    Core 1   | Core 2 | Core 3 |    Core 4    | Core 5 | Core 6 | Core 7 |
++-----------------------+---------+--------------+-------------+--------+--------+--------------+--------+--------+--------+
+|   INSTR_RETIRED_ANY   |  FIXC0  | 233439560586 | 21688109534 |      0 |      0 | 131490348220 |      0 |      0 |    905 |
+| CPU_CLK_UNHALTED_CORE |  FIXC1  | 230498274429 | 13973477028 |      0 |      0 |  89284962106 |      0 |      0 |  40444 |
+|  CPU_CLK_UNHALTED_REF |  FIXC2  | 113491949787 |  7377008626 |      0 |      0 |  47001633752 |      0 |      0 |  20833 |
+|       DRAM_READS      | MBOX0C1 |       -      |      -      |    -   |    -   |       -      |    -   |    -   |    -   |
+|      DRAM_WRITES      | MBOX0C2 |       -      |      -      |    -   |    -   |       -      |    -   |    -   |    -   |
++-----------------------+---------+--------------+-------------+--------+--------+--------------+--------+--------+--------+
+
++----------------------------+---------+--------------+-----+--------------+--------------+
+|            Event           | Counter |      Sum     | Min |      Max     |      Avg     |
++----------------------------+---------+--------------+-----+--------------+--------------+
+|   INSTR_RETIRED_ANY STAT   |  FIXC0  | 386618019245 |   0 | 233439560586 | 4.832725e+10 |
+| CPU_CLK_UNHALTED_CORE STAT |  FIXC1  | 333756754007 |   0 | 230498274429 | 4.171959e+10 |
+|  CPU_CLK_UNHALTED_REF STAT |  FIXC2  | 167870612998 |   0 | 113491949787 | 2.098383e+10 |
+|       DRAM_READS STAT      | MBOX0C1 |            0 | inf |            0 |            0 |
+|      DRAM_WRITES STAT      | MBOX0C2 |            0 | inf |            0 |            0 |
++----------------------------+---------+--------------+-----+--------------+--------------+
+
++-----------------------------------+-----------+-----------+---------+---------+-----------+---------+---------+--------------+
+|               Metric              |   Core 0  |   Core 1  |  Core 2 |  Core 3 |   Core 4  |  Core 5 |  Core 6 |    Core 7    |
++-----------------------------------+-----------+-----------+---------+---------+-----------+---------+---------+--------------+
+|        Runtime (RDTSC) [s]        |   87.7391 |   87.7391 | 87.7391 | 87.7391 |   87.7391 | 87.7391 | 87.7391 |      87.7391 |
+|        Runtime unhalted [s]       |  115.7762 |    7.0187 |       0 |       0 |   44.8466 |       0 |       0 | 2.031448e-05 |
+|            Clock [MHz]            | 4043.4404 | 3771.1397 |    -    |    -    | 3781.9327 |    -    |    -    |    3865.0108 |
+|                CPI                |    0.9874 |    0.6443 |    -    |    -    |    0.6790 |    -    |    -    |      44.6895 |
+|  Memory load bandwidth [MBytes/s] |         0 |         0 |       0 |       0 |         0 |       0 |       0 |            0 |
+|  Memory load data volume [GBytes] |         0 |         0 |       0 |       0 |         0 |       0 |       0 |            0 |
+| Memory evict bandwidth [MBytes/s] |         0 |         0 |       0 |       0 |         0 |       0 |       0 |            0 |
+| Memory evict data volume [GBytes] |         0 |         0 |       0 |       0 |         0 |       0 |       0 |            0 |
+|    Memory bandwidth [MBytes/s]    |         0 |         0 |       0 |       0 |         0 |       0 |       0 |            0 |
+|    Memory data volume [GBytes]    |         0 |         0 |       0 |       0 |         0 |       0 |       0 |            0 |
++-----------------------------------+-----------+-----------+---------+---------+-----------+---------+---------+--------------+
+
++----------------------------------------+------------+-----------+-----------+-----------+
+|                 Metric                 |     Sum    |    Min    |    Max    |    Avg    |
++----------------------------------------+------------+-----------+-----------+-----------+
+|        Runtime (RDTSC) [s] STAT        |   701.9128 |   87.7391 |   87.7391 |   87.7391 |
+|        Runtime unhalted [s] STAT       |   167.6415 |         0 |  115.7762 |   20.9552 |
+|            Clock [MHz] STAT            | 15461.5236 | 3771.1397 | 4043.4404 | 1932.6905 |
+|                CPI STAT                |    47.0002 |    0.6443 |   44.6895 |    5.8750 |
+|  Memory load bandwidth [MBytes/s] STAT |          0 |         0 |         0 |         0 |
+|  Memory load data volume [GBytes] STAT |          0 |         0 |         0 |         0 |
+| Memory evict bandwidth [MBytes/s] STAT |          0 |         0 |         0 |         0 |
+| Memory evict data volume [GBytes] STAT |          0 |         0 |         0 |         0 |
+|    Memory bandwidth [MBytes/s] STAT    |          0 |         0 |         0 |         0 |
+|    Memory data volume [GBytes] STAT    |          0 |         0 |         0 |         0 |
++----------------------------------------+------------+-----------+-----------+-----------+
+

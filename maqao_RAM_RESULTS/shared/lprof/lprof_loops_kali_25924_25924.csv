@@ -1,0 +1,5 @@
+loop_id;module;function_name;source_info;level;time_p;time_s;time_s_min;time_s_avg;time_s_max;
+11;binary;baseline;kernel.c:38-39;Innermost;80.14;42.87;;;;
+3;binary;init_array;driver.c:110-111;Innermost;5.32;2.84;;;;
+12;binary;baseline;kernel.c:37-39;Outermost;0;0;;;;
+4;binary;init_array;driver.c:109-111;Outermost;0;0;;;;

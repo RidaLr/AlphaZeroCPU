@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><title>ONEVIEW - app - Loops</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_menu.css" />
+<script src="js/jquery-1.9.0.min.js" ></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="js/grid.locale-en.js" ></script>
+<script src="js/jquery.jqGrid.min.js" ></script>
+<script src="js/d3.min.js" ></script>
+<script class="include" src="js/jquery.jqplot.min.js"></script>
+<script class="include" src="js/jqplot.pieRenderer.min.js"></script>
+<script class="include" src="js/jqplot.barRenderer.min.js"></script>
+<script class="include" src="js/jqplot.categoryAxisRenderer.min.js"></script>
+<script class="include" src="js/jqplot.pointLabels.min.js"></script>
+<script class="include" src="js/jqplot.cursor.min.js"></script>
+<script class="include" src="js/jqplot.canvasTextRenderer.min.js"></script>
+<script class="include" src="js/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script class="include" src="js/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script class="include" src="js/jqplot.enhancedLegendRenderer.min.js"></script>
+<script class="include" src="js/jqplot.highlighter.min.js"></script>
+<script class="include" src="js/maqao_menu.js"></script>
+<script>
+$( function() {
+  $( document ).tooltip({
+    content: function() {
+      if ($(this).hasClass ("tooltip-maqao")
+      ||  $(this).hasClass ("tooltip-maqao-button")) {
+        return $(this).attr('title');
+      }
+    },
+    position: {
+      my: "center bottom-20",
+        at: "center top",
+        using: function( position, feedback ) {
+          $( this ).css( position );
+          $( "<div>" )
+            .addClass( "arrow-tt" )
+            .addClass( feedback.vertical )
+            .addClass( feedback.horizontal )
+            .appendTo( this );
+        }
+      }
+  });
+} );
+
+// Code from https://www.htmlgoodies.com/beyond/javascript/article.php/3724571/Using-Multiple-JavaScript-Onload-Functions.htm
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+}
+</script>
+</head><body>
+<div id="page_title"><img alt="MAQAO" id="maqao_logo" src="images/MAQAO_small_logo.png" /><ul id="maqao_menu"><li><a  href="index.html">Global</a></li><li><a  href="application.html">Application</a></li><li><a  href="fcts_and_loops.html">Functions</a></li><li><a class="_current_page" href="loops_index.html">Loops</a></li><li><a  href="topology.html">Topology</a></li></ul></div>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+<div id="spacer_page_title" style="height:100px;" ></div>
+<button id="button_toggle_loop_index" onclick="toggle_loop_index();" type="button" style="margin-bottom: 10px;margin-right: 10px;cursor:pointer;">Show Innermost Profile</button><div class="_fixed_box" ><h3 class="_header">Loops Index<span class="tooltip-maqao-button help-maqao" title="List of profiled loops. Details about metrics can be obtained by moving the cursor on the column header. Rows can be sorted ascending or descending by clicking on the column header. Colors in the coverage column are from red for hot loops to blue for cold loops. Some additionnal columns can be displayed by clicking on the form above the table. Double click on a loop to display its analysis report in a new tab."></span></h3>
+<div class="_content"><div class="_accordion_box collapsed"><h3 id="_accordion_header_1" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>Filters<span class="tooltip-maqao-button help-maqao" title="A form that can be displayed / hidden by clicking on the header to specify which modules must be displayed in the profiling. By clicking on the button, only checked categories are displayed."></span></h3><div id="_accordion_content_1" class="_content collapsed"><form><u>Modules:</u><br style="margin-bottom:10px;">
+<input id="_input_check_all_mods" type="checkbox" style="vertical-align: middle;cursor:pointer" onchange="_onchange_modules (this)" checked ><span id="_input_check_all_mods_text">Uncheck all modules</span><br>
+<input id="_input_check_mod_app" type="checkbox" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked >app - 85.46 %<br>
+<br>
+<u>Dynamic Results:</u><br style="margin-bottom:10px;">
+<input id="_input_check_all_decan" type="checkbox" style="vertical-align: middle;cursor:pointer"><span id="_input_check_all_decan_text">Get only loops with dynamic results</span><br>
+</form><hr><button type="button" onclick="_upd_table();" style="cursor:pointer;">Filter Results</button>
+</div></div><div class="_div_table" id="_fixed_82"><div><form>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="checkbox" id="_table82_opt4" onclick="click_table_menu('_table82_opt4')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  >Coverage (%)</span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="checkbox" id="_table82_opt5" onclick="click_table_menu('_table82_opt5')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  >Level</span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="checkbox" id="_table82_opt6" onclick="click_table_menu('_table82_opt6')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Time (s)</span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="checkbox" id="_table82_opt7" onclick="click_table_menu('_table82_opt7')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Vectorization Ratio (%)</span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="checkbox" id="_table82_opt8" onclick="click_table_menu('_table82_opt8')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Speedup If No Scalar Integer</span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="checkbox" id="_table82_opt9" onclick="click_table_menu('_table82_opt9')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Speedup If FP Vectorized</span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="checkbox" id="_table82_opt10" onclick="click_table_menu('_table82_opt10')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Speedup If Fully Vectorized</span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="checkbox" id="_table82_opt11" onclick="click_table_menu('_table82_opt11')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Speedup If Perfect Load Balancing</span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="checkbox" id="_table82_opt_all" onclick="set_all_table_menu(this, ['_table82_opt4','_table82_opt5','_table82_opt6','_table82_opt7','_table82_opt8','_table82_opt9','_table82_opt10','_table82_opt11',])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span id="_table82_opt_all_text">Select all</span></span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="checkbox" id="_table82_opt_select_all_speedups" onclick="select_all_speedups(_fixed_table_82, '_table82', this)" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span id="_table82_opt_select_all_speedups_text">Select All Speed-Ups</span></span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="checkbox" id="_table82_opt_select_all_efficiencies" onclick="select_all_efficiencies(_fixed_table_82, '_table82', this)" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span id="_table82_opt_select_all_efficiencies_text">Select All Efficiencies</span></span>
+</form></div>
+<table class="_fixed_table" id="_fixed_table_82"><tr><th class=" _left tooltip-maqao" title="MAQAO loop identifier. A green cell means the loop has been dynamically analyzed."><span></span>Loop id</th><th class=" tooltip-maqao" title="Name of the source file that contains the loop and its location in the file."><span></span>Source Location</th><th class=" tooltip-maqao" title="Name of the fonction that contains the loop."><span></span>Source Function</th><th class=" _table82_opt4 tooltip-maqao" title="Percentage of the execution time spent in the loop."><span></span>Coverage (%)</th><th class=" _table82_opt5 tooltip-maqao" title="Loop Level (Innermost / Single / InBetween / Outermost)"><span></span>Level</th><th class=" _table82_opt6 _tcol_hidden tooltip-maqao" title="Execution time spent in the loop in seconds."><span></span>Time (s)</th><th class=" _table82_opt7 _tcol_hidden tooltip-maqao" title="Percentage of the loop that have been vectorized. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%."><span></span>Vectorization Ratio (%)</th><th class=" _table82_opt8 _tcol_hidden tooltip-maqao" title="Optimistic speedup of the loop available if it has no scalar integer instructions. This speedup can be achieved by removing all instructions which do not perform any floating-point computation or memory accesses. Instructions used to handle the loop control flow are not included in the instructions set to remove. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2."><span></span>Speedup If No Scalar Integer</th><th class=" _table82_opt9 _tcol_hidden tooltip-maqao" title="Optimistic speedup of the loop available if it has all its floating point computation vectorized. This speedup can be achived by vectorizing all instructions performing floating point computation. It does not take into account memory accesses. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2.</li>"><span></span>Speedup If FP Vectorized</th><th class=" _table82_opt10 _tcol_hidden tooltip-maqao" title="Optimistic speedup of the loop available if it has all its instructions vectorized. This speedup can be achived by vectorizing all instructions, both floating point computation instructions and memory accesses instructions. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>"><span></span>Speedup If Fully Vectorized</th><th class=" _table82_opt11 _tcol_hidden tooltip-maqao" title="Optimistic speedup of the loop available if it is perfectly load balanced. This speedup can be achieved by balancing all threads. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>"><span></span>Speedup If Perfect Load Balancing</th></tr><tr id="_tr_82_1"  ondblclick="_action_120(this,1,-1, 'loops/binary_11.html');"  style="cursor:pointer;"><td id="_td_82_1_1"  data-_i="1" data-_j="1"  data-_p = "binary_11"  class=" _left _centered" >11</td><td id="_td_82_1_2"  data-_i="1" data-_j="2"  data-_p = "binary_11"  style="word-break:break-all;" >app - kernel.c:38-39</td><td id="_td_82_1_3"  data-_i="1" data-_j="3"  data-_p = "binary_11"  style="word-break:break-all;" >baseline</td><td id="_td_82_1_4"  data-_i="1" data-_j="4"  data-_p = "binary_11"  class=" _centered _table82_opt4"  style="background:#FB3918;" >80.14</td><td id="_td_82_1_5"  data-_i="1" data-_j="5"  data-_p = "binary_11"  class=" _centered _table82_opt5" >Innermost</td><td id="_td_82_1_6"  data-_i="1" data-_j="6"  data-_p = "binary_11"  class=" _centered _table82_opt6 _tcol_hidden" >42.87</td><td id="_td_82_1_7"  data-_i="1" data-_j="7"  data-_p = "binary_11"  class=" _centered _table82_opt7 _tcol_hidden"  style="background:#FF3333" >0</td><td id="_td_82_1_8"  data-_i="1" data-_j="8"  data-_p = "binary_11"  class=" _centered _table82_opt8 _tcol_hidden"  style="background:#FFCC99" >1.33</td><td id="_td_82_1_9"  data-_i="1" data-_j="9"  data-_p = "binary_11"  class=" _centered _table82_opt9 _tcol_hidden"  style="background:#FFCC99" >1.88</td><td id="_td_82_1_10"  data-_i="1" data-_j="10"  data-_p = "binary_11"  class=" _centered _table82_opt10 _tcol_hidden"  style="background:#FF950E" >6.4</td><td id="_td_82_1_11"  data-_i="1" data-_j="11"  data-_p = "binary_11"  class=" _centered _table82_opt11 _tcol_hidden" >1</td></tr>
+<tr id="_tr_82_2"  ondblclick="_action_120(this,2,-1, 'loops/binary_3.html');"  style="cursor:pointer;"><td id="_td_82_2_1"  data-_i="2" data-_j="1"  data-_p = "binary_3"  class=" _left _centered" >3</td><td id="_td_82_2_2"  data-_i="2" data-_j="2"  data-_p = "binary_3"  style="word-break:break-all;" >app - driver.c:110-111</td><td id="_td_82_2_3"  data-_i="2" data-_j="3"  data-_p = "binary_3"  style="word-break:break-all;" >init_array</td><td id="_td_82_2_4"  data-_i="2" data-_j="4"  data-_p = "binary_3"  class=" _centered _table82_opt4"  style="background:#B66776;" >5.32</td><td id="_td_82_2_5"  data-_i="2" data-_j="5"  data-_p = "binary_3"  class=" _centered _table82_opt5" >Innermost</td><td id="_td_82_2_6"  data-_i="2" data-_j="6"  data-_p = "binary_3"  class=" _centered _table82_opt6 _tcol_hidden" >2.84</td><td id="_td_82_2_7"  data-_i="2" data-_j="7"  data-_p = "binary_3"  class=" _centered _table82_opt7 _tcol_hidden"  style="background:#FF3333" >0</td><td id="_td_82_2_8"  data-_i="2" data-_j="8"  data-_p = "binary_3"  class=" _centered _table82_opt8 _tcol_hidden"  style="background:#FFCC99" >1.19</td><td id="_td_82_2_9"  data-_i="2" data-_j="9"  data-_p = "binary_3"  class=" _centered _table82_opt9 _tcol_hidden"  style="background:#FF950E" >2.11</td><td id="_td_82_2_10"  data-_i="2" data-_j="10"  data-_p = "binary_3"  class=" _centered _table82_opt10 _tcol_hidden"  style="background:#FF950E" >2.38</td><td id="_td_82_2_11"  data-_i="2" data-_j="11"  data-_p = "binary_3"  class=" _centered _table82_opt11 _tcol_hidden" >1</td></tr>
+<tr id="_tr_82_3"  ondblclick="_action_120(this,3,-1, 'loops/binary_12.html');"  style="cursor:pointer;"><td id="_td_82_3_1"  data-_i="3" data-_j="1"  data-_p = "binary_12"  class=" _left _centered" >12</td><td id="_td_82_3_2"  data-_i="3" data-_j="2"  data-_p = "binary_12"  style="word-break:break-all;" >app - kernel.c:37-39</td><td id="_td_82_3_3"  data-_i="3" data-_j="3"  data-_p = "binary_12"  style="word-break:break-all;" >baseline</td><td id="_td_82_3_4"  data-_i="3" data-_j="4"  data-_p = "binary_12"  class=" _centered _table82_opt4"  style="background:#7B90C8;" >0</td><td id="_td_82_3_5"  data-_i="3" data-_j="5"  data-_p = "binary_12"  class=" _centered _table82_opt5" >Outermost</td><td id="_td_82_3_6"  data-_i="3" data-_j="6"  data-_p = "binary_12"  class=" _centered _table82_opt6 _tcol_hidden"  style="background:#A52B12;" >0</td><td id="_td_82_3_7"  data-_i="3" data-_j="7"  data-_p = "binary_12"  class=" _centered _table82_opt7 _tcol_hidden"  style="background:#FF3333" >0</td><td id="_td_82_3_8"  data-_i="3" data-_j="8"  data-_p = "binary_12"  class=" _centered _table82_opt8 _tcol_hidden" >1</td><td id="_td_82_3_9"  data-_i="3" data-_j="9"  data-_p = "binary_12"  class=" _centered _table82_opt9 _tcol_hidden" >1</td><td id="_td_82_3_10"  data-_i="3" data-_j="10"  data-_p = "binary_12"  class=" _centered _table82_opt10 _tcol_hidden"  style="background:#FF950E" >8</td><td id="_td_82_3_11"  data-_i="3" data-_j="11"  data-_p = "binary_12"  class=" _centered _table82_opt11 _tcol_hidden" >0</td></tr>
+<tr id="_tr_82_4"  ondblclick="_action_120(this,4,-1, 'loops/binary_4.html');"  style="cursor:pointer;"><td id="_td_82_4_1"  data-_i="4" data-_j="1"  data-_p = "binary_4"  class=" _left _centered" >4</td><td id="_td_82_4_2"  data-_i="4" data-_j="2"  data-_p = "binary_4"  style="word-break:break-all;" >app - driver.c:109-111</td><td id="_td_82_4_3"  data-_i="4" data-_j="3"  data-_p = "binary_4"  style="word-break:break-all;" >init_array</td><td id="_td_82_4_4"  data-_i="4" data-_j="4"  data-_p = "binary_4"  class=" _centered _table82_opt4"  style="background:#7B90C8;" >0</td><td id="_td_82_4_5"  data-_i="4" data-_j="5"  data-_p = "binary_4"  class=" _centered _table82_opt5" >Outermost</td><td id="_td_82_4_6"  data-_i="4" data-_j="6"  data-_p = "binary_4"  class=" _centered _table82_opt6 _tcol_hidden"  style="background:#A52B12;" >0</td><td id="_td_82_4_7"  data-_i="4" data-_j="7"  data-_p = "binary_4"  class=" _centered _table82_opt7 _tcol_hidden"  style="background:#FF3333" >0</td><td id="_td_82_4_8"  data-_i="4" data-_j="8"  data-_p = "binary_4"  class=" _centered _table82_opt8 _tcol_hidden" >1</td><td id="_td_82_4_9"  data-_i="4" data-_j="9"  data-_p = "binary_4"  class=" _centered _table82_opt9 _tcol_hidden" >1</td><td id="_td_82_4_10"  data-_i="4" data-_j="10"  data-_p = "binary_4"  class=" _centered _table82_opt10 _tcol_hidden"  style="background:#FF950E" >8</td><td id="_td_82_4_11"  data-_i="4" data-_j="11"  data-_p = "binary_4"  class=" _centered _table82_opt11 _tcol_hidden" >0</td></tr>
+</table></div><script>
+function _action_120 (obj, i, j, p){
+           open(""+p+"");
+}
+</script>
+<style>
+.menu {
+width: 250px;
+  z-index: 1;
+  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  display: none;
+  transition: 0.2s display ease-in;
+  background-color: white;
+}
+.menu-options {
+  list-style: none;
+  padding: 0px 0;
+  z-index: 1;
+}
+.menu-option {
+  font-weight: 500;
+  z-index: 1;
+  font-size: 14px;
+  padding: 2px 10px 2px 10px;
+  cursor: pointer;
+}
+.menu-option:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+</style>
+<div class="menu" data-visible=false id="mctxMenu4">
+  <ul class="menu-options">
+    <li class="menu-option" id="mctxMenu4_1" onclick="_action_121('_p', '_p4_1')" oncontextmenu="_action_121('_p', '_p4_1')" >Load Distribution</li>
+    <li class="menu-option" id="mctxMenu4_2" onclick="_action_122('_p', '_p4_2')" oncontextmenu="_action_122('_p', '_p4_2')" >Sorted Load Distribution</li>
+    <li class="menu-option" id="mctxMenu4_3" onclick="_action_123('_p', '_p4_3')" oncontextmenu="_action_123('_p', '_p4_3')" >Load Distribution All Threads</li>
+    <li class="menu-option" id="mctxMenu4_4" onclick="_action_124('_p', '_p4_4')" oncontextmenu="_action_124('_p', '_p4_4')" >Load Callchains</li>
+    <li class="menu-option" id="mctxMenu4_5" onclick="_action_125('_p', '_p4_5')" oncontextmenu="_action_125('_p', '_p4_5')" >Go to report ...</li>
+  </ul>
+</div>
+<script>
+function toggleMenu (menu, command) {
+  menu.style.display = command === "show" ? "block" : "none";
+  if (menu.style.display == "block") {
+    menu.dataset.visible = true;
+  }
+  else {
+    menu.dataset.visible = false;
+    if (_previous_elem != null) {
+      _previous_elem.parentNode.classList.remove ("selected-context");
+    }
+  }
+}
+const setPosition = (menu, { top, left }) => {
+  menu.style.left = `${left}px`;
+  menu.style.top = `${top}px`;
+  toggleMenu(menu, "show");
+};
+var _global_elem = null;
+var _previous_elem = null;
+var _ids;
+var _current_menu = null;
+
+document.addEventListener("click", e => {
+  if (_current_menu != null && _current_menu.dataset.visible) {
+    toggleMenu (_current_menu, "hide");
+    _current_menu = null;
+  }
+});
+document.getElementById("mctxMenu4").addEventListener('contextmenu', event => event.preventDefault());
+
+_ids = ["_tr_82_1", "_tr_82_2", "_tr_82_3", "_tr_82_4"];
+for (var i = 0; i < _ids.length; i++) {
+  var elem = document.getElementById(_ids[i]);
+  elem.addEventListener("contextmenu", e => {
+    e.preventDefault();
+    _global_elem = event.target || event.srcElement;
+    const origin = {
+      left: e.clientX,
+      top: e.clientY
+    };
+    if (_current_menu != null && _current_menu.dataset.visible) {
+      toggleMenu (_current_menu, "hide");
+      _current_menu = null;
+    }
+    _previous_elem = _global_elem;    var menu = document.getElementById("mctxMenu4");
+    if (menu != null) {
+      _current_menu = menu;
+      setPosition(menu, origin);
+      _global_elem.parentNode.classList.add ("selected-context");
+    }
+    return false;
+  });
+}
+function _action_121 (p, pm){
+           document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"b_charts/"+_global_elem.dataset._p+".html\"></object>";
+           var modal = document.getElementById('MaqaoModal');
+           modal.style.display = "block";
+}
+function _action_122 (p, pm){
+           document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"b_charts/"+_global_elem.dataset._p+"_sorted.html\"></object>";
+           var modal = document.getElementById('MaqaoModal');
+           modal.style.display = "block";
+}
+function _action_123 (p, pm){
+           document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"b_charts/"+_global_elem.dataset._p+"_all.html\"></object>";
+           var modal = document.getElementById('MaqaoModal');
+           modal.style.display = "block";
+}
+function _action_124 (p, pm){
+           document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"b_charts/"+_global_elem.dataset._p+"_callchains.html\"></object>";
+           var modal = document.getElementById('MaqaoModal');
+           modal.style.display = "block";
+}
+function _action_125 (p, pm){
+           open("loops/"+_global_elem.dataset._p+".html", "_self");
+}
+</script>
+<script>
+addLoadEvent(function(){
+  var boxs_on  = ["_table82_opt_all","_table82_opt4", "_table82_opt5", ];
+  var boxs_off = ["_table82_opt_select_all_speedups", "_table82_opt_select_all_efficiencies", "_table82_opt_select_all_speedups", "_table82_opt_select_all_efficiencies", "_table82_opt_select_all_speedups", "_table82_opt_select_all_efficiencies", "_table82_opt_select_all_speedups", "_table82_opt_select_all_efficiencies", "_table82_opt_select_all_speedups", "_table82_opt_select_all_efficiencies", "_table82_opt6", "_table82_opt_select_all_speedups", "_table82_opt_select_all_efficiencies", "_table82_opt7", "_table82_opt_select_all_speedups", "_table82_opt_select_all_efficiencies", "_table82_opt8", "_table82_opt_select_all_speedups", "_table82_opt_select_all_efficiencies", "_table82_opt9", "_table82_opt_select_all_speedups", "_table82_opt_select_all_efficiencies", "_table82_opt10", "_table82_opt_select_all_speedups", "_table82_opt_select_all_efficiencies", "_table82_opt11", "_table82_opt_select_all_speedups", "_table82_opt_select_all_efficiencies", ];
+  for (var i = 0; i < boxs_on.length; i++) {
+    var obj = document.getElementById(boxs_on[i]).checked = true;
+  }
+  for (var i = 0; i < boxs_off.length; i++) {
+    var obj = document.getElementById(boxs_off[i]).checked = false;
+  }
+});
+</script>
+<script>
+function select_all_speedups(table, id_root, checkbox){
+  for (var j = 0, col; col = table.rows[0].cells[j]; j++) {
+    var regex = /Potential Speed-Up/;
+    if (regex.test(col.innerHTML) == true) {
+      var classes = col.className.split(' ');
+      for (var c = 0; c < classes.length; c++) {
+        if (classes[c].indexOf(id_root) != -1) {
+          if (document.getElementById (classes[c]).checked == true
+          && checkbox.checked == false) {
+            click_table_menu (classes[c]);
+            document.getElementById (classes[c]).checked = false;
+          }
+          else if (document.getElementById (classes[c]).checked == false
+          && checkbox.checked == true) {
+            click_table_menu (classes[c]);
+            document.getElementById (classes[c]).checked = true;
+          }
+        }
+      }
+    }
+  }
+}
+function select_all_efficiencies(table, id_root, checkbox){
+  for (var j = 0, col; col = table.rows[0].cells[j]; j++) {
+    var regex = /Efficiency/;
+    if (regex.test(col.innerHTML) == true) {
+      var classes = col.className.split(' ');
+      for (var c = 0; c < classes.length; c++) {
+        if (classes[c].indexOf(id_root) != -1) {
+          if (document.getElementById (classes[c]).checked == true
+          && checkbox.checked == false) {
+            click_table_menu (classes[c]);
+            document.getElementById (classes[c]).checked = false;
+          }
+          else if (document.getElementById (classes[c]).checked == false
+          && checkbox.checked == true) {
+            click_table_menu (classes[c]);
+            document.getElementById (classes[c]).checked = true;
+          }
+        }
+      }
+    }
+  }
+}
+</script>
+</div></div><script>
+// Function called to check / uncheck all modules in the filter
+function _onchange_modules (obj) {
+  var inputs = ["_input_check_mod_app", ];
+  if (obj.checked == true) {
+    document.getElementById("_input_check_all_mods_text").innerHTML = "Uncheck all modules";
+    for (var i = 0; i < inputs.length; i++) {
+      document.getElementById(inputs[i]).checked = true;
+    }
+  }
+  else {
+    document.getElementById("_input_check_all_mods_text").innerHTML = "Check all modules";
+    for (var i = 0; i < inputs.length; i++) {
+      document.getElementById(inputs[i]).checked = false;
+    }
+  }
+}
+// Function called to handle filters
+function _upd_table() {
+  var tab     = document.getElementById("_fixed_table_82");
+  var rows    = tab.childNodes[0].rows;
+  var nb_rows = rows.length;
+  var button  = document.getElementById("button_toggle_loop_index");
+  for (var i = 1; i < nb_rows; i++) {
+    var cells = rows[i].cells;
+    if (cells[1].innerHTML != "") {
+       if (document.getElementById("_input_check_all_decan").checked == true
+       &&  cells[0].style.backgroundColor == "") {
+          rows[i].classList.add("_treed_hidden");
+      }
+      else if ((document.getElementById("_input_check_mod_" + cells[1].innerHTML.replace (/:.*/g, "")).checked == false)
+      ||  ((button.innerHTML.localeCompare ("Show Full Profile") == 0)
+        && (cells[4].innerHTML.localeCompare("Single") != 0)
+        && (cells[4].innerHTML.localeCompare("Innermost") != 0))) {
+          rows[i].classList.add("_treed_hidden");
+      }
+      else {
+          rows[i].classList.remove("_treed_hidden");
+      }
+    }
+  }
+}
+addLoadEvent(function(){
+  var boxs_on  = ["_input_check_all_mods","_input_check_mod_app", ];
+  var boxs_off = ["_input_check_all_decan"];
+  for (var i = 0; i < boxs_on.length; i++) {
+    document.getElementById(boxs_on[i]).checked = true;
+  }
+  for (var i = 0; i < boxs_off.length; i++) {
+    document.getElementById(boxs_off[i]).checked = false;
+  }
+});
+function _onresize () {
+  document.getElementById("spacer_page_title").style.height = (document.getElementById("page_title").scrollHeight + 20)+"px";
+}
+window.onresize = _onresize;
+function toggle_loop_index() {
+  var table = document.getElementById("_fixed_table_82");
+  var button = document.getElementById("button_toggle_loop_index");
+  if (button.innerHTML.localeCompare ("Show Full Profile") == 0) {
+    button.innerHTML = "Show Innermost Profile";
+    for (var i = 1, row; row = table.rows[i]; i++) {
+      if (document.getElementById("_input_check_mod_" + row.cells[1].innerHTML.replace (/.-.*/g, "")).checked == true) {
+        row.classList.remove ("_treed_hidden");
+      }
+    }
+  }
+  else {
+    button.innerHTML = "Show Full Profile";
+    for (var i = 1, row; row = table.rows[i]; i++) {
+      if (row.cells[4].innerHTML.localeCompare("Single") != 0
+      && row.cells[4].innerHTML.localeCompare("Innermost") != 0) {
+        row.classList.add ("_treed_hidden");
+      }
+    }
+  }
+}
+addLoadEvent(function(){
+  toggle_loop_index();
+});
+</script>
+
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+// Fonction for table selector
+function click_table_menu (c) {
+  $("."+c).each(function(index, element) {
+    element.classList.toggle("_tcol_hidden");
+  });
+}
+function set_all_table_menu (obj, opt_ids) {
+  for (i = 0; i < opt_ids.length; i++) {
+    var obj_s = document.getElementById(opt_ids[i]);
+    if (obj.checked == obj_s.checked) {
+      click_table_menu (opt_ids[i]);
+    }
+    if (obj.checked == true) {
+      obj_s.checked = false;
+    } else {
+      obj_s.checked = true;
+    }
+  }
+  if (obj.checked == true) {
+    document.getElementById(obj.id+"_text").innerHTML = "Select all";
+  } else {
+    document.getElementById(obj.id+"_text").innerHTML = "Select none";
+  }
+}
+// Script for accordion box
+function _click_accordion_header(obj) {
+  var content_id = '_accordion_content_' + obj.id.substr (obj.id.lastIndexOf('_') + 1);
+  var content = document.getElementById(content_id);
+  content.classList.toggle('collapsed');
+  obj.classList.toggle('collapsed');
+  obj.parentNode.classList.toggle('collapsed');
+  // Check if the box must be openned ...
+  if (obj.classList.contains ('collapsed'))
+  {
+    obj.firstChild.textContent = "\u25B6";
+  }
+  // or closed.
+  else 
+  {
+    obj.firstChild.textContent = "\u25BC";
+  }
+}
+  // Script for paged table
+function _click_paged_prev(obj) {
+  var pages_content_id = '_paged_tables_page_' + obj.parentNode.parentNode.id.substr (obj.parentNode.parentNode.id.lastIndexOf('_') + 1);
+  var pages_content = document.getElementById(pages_content_id).innerHTML;
+  var max_pages = pages_content.substr (pages_content.lastIndexOf('/') + 1);
+  var cur_page  = pages_content.substring (pages_content.lastIndexOf(' ') + 1, pages_content.lastIndexOf('/'));
+  max_pages = Number (max_pages);
+  cur_page  = Number (cur_page);
+  if (cur_page > 1) {
+    var div_paged = obj.parentNode.parentNode.id;
+    var i;
+    var x = document.getElementsByClassName(div_paged + '_' + (cur_page - 1));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    x = document.getElementsByClassName(div_paged + '_' + (cur_page - 2));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+  document.getElementById(pages_content_id).textContent = "Page " + (cur_page - 1) + "/" + max_pages;
+  }
+}
+function _click_paged_next(obj) {
+  var pages_content_id = '_paged_tables_page_' + obj.parentNode.parentNode.id.substr (obj.parentNode.parentNode.id.lastIndexOf('_') + 1);
+  var pages_content = document.getElementById(pages_content_id).innerHTML;
+  var max_pages = pages_content.substr (pages_content.lastIndexOf('/') + 1);
+  var cur_page  = pages_content.substring (pages_content.lastIndexOf(' ') + 1, pages_content.lastIndexOf('/'));
+  max_pages = Number (max_pages);
+  cur_page  = Number (cur_page);
+  if (cur_page < max_pages) {
+    var div_paged = obj.parentNode.parentNode.id;
+    var i;
+    var x = document.getElementsByClassName(div_paged + '_' + (cur_page - 1));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    x = document.getElementsByClassName(div_paged + '_' + cur_page);
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    document.getElementById(pages_content_id).textContent = "Page " + (cur_page + 1) + "/" + max_pages;
+  }
+}
+// Function for tree table
+function _click_treed(obj) {
+  if (obj.innerHTML == "\u25BA") {
+    obj.textContent = "\u25BC";
+    // Open childs
+    var x = document.getElementsByClassName(obj.parentNode.parentNode.id);
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_treed_hidden');
+    }
+  }
+  else {
+    obj.textContent = "\u25BA";
+    // Close all childs
+    var trs = document.getElementsByTagName('tr');
+    var r   = obj.parentNode.parentNode.id+'_';
+    var re  = new RegExp (r, "g");
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+""
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (! o.classList.contains('_treed_hidden')) {
+          o.classList.toggle('_treed_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BC") {
+          o.firstChild.firstChild.textContent = "\u25BA";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '+';
+        }
+      }
+    }
+    if (obj.parentNode.childNodes.length == 3) {
+      obj.parentNode.childNodes[2].textContent = '+';
+    }
+  }
+}
+function _click_expand (obj) {
+  var trs = document.getElementsByTagName('tr');
+  var r   = obj.parentNode.parentNode.id+'_';
+  var re  = new RegExp (r, "g");
+  // Symbole + => expand all
+  if (obj.textContent == "+") {
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+"";
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (o.classList.contains('_treed_hidden')) {
+           o.classList.toggle('_treed_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BA") {
+          o.firstChild.firstChild.textContent = "\u25BC";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '\u2010';
+        }
+      }
+    }
+    var o = obj.parentNode.parentNode;
+    if (o.firstChild.firstChild.textContent == "\u25BA") {
+      o.firstChild.firstChild.textContent = "\u25BC";
+    }
+    obj.textContent = "\u2010";
+  }
+  // Symbole - => collapse all
+  else {
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+"";
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (! o.classList.contains('_treed_hidden')) {
+           o.classList.toggle('_treed_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BC") {
+          o.firstChild.firstChild.textContent = "\u25BA";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '+';
+        }
+      }
+    }
+    var o = obj.parentNode.parentNode;
+    if (o.firstChild.firstChild.textContent == "\u25BC") {
+      o.firstChild.firstChild.textContent = "\u25BA";
+    }
+    obj.textContent = "+";
+  }
+}
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+// Change tab
+function change_tab (e, baseId) {
+  // Handle tabs
+  var i = 1;
+  while (true) {
+    var id = baseId + i;
+    var t = document.getElementById (id);
+    if (t == null) {
+      break;
+    }
+    if (id == e.dataset.tab) {
+      t.style.removeProperty("display");
+    }
+    else {
+      t.style.display = "none";
+    }
+    i = i + 1;
+  }
+  // Handle headers
+  $(e).siblings().each( function () {
+    this.classList.remove("selected_tab");
+  });
+  e.classList.add("selected_tab");
+}
+</script>
+</body>
+</html>

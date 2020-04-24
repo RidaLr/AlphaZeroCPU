@@ -1,0 +1,26 @@
+[MAQAO] PROCESS LAUNCHED (host kali, process 25924)
+
+* Info: If application should not be killed, rerun with ignore-signals=11
+* Info: If application has normaly exited, rerun with set-exit-signals=11
+[MAQAO] STOP PROFILING (host kali, process 25924)
+[MAQAO] DUMPING SAMPLES (host kali, process 25924)
+[MAQAO] FINISHED DUMPING SAMPLES (host kali, process 25924)
+[MAQAO] DUMPING SOURCE INFO FOR CALLCHAIN NODES (host kali, process 25924)
+[MAQAO] FINISHED DUMPING SOURCE INFO FOR CALLCHAIN NODES (host kali, process 25924)
+[MAQAO] ANALYZING binary (host kali)
+[MAQAO] binary (host kali) DONE
+[MAQAO] Your experiment path is /home/pavel/Documents/COURS/IATIC_4/AOA/Alpha0_CPU/maqao_RAM_RESULTS/lprof_npsu/
+[MAQAO] To display your profiling results:
+#################################################################################################
+#    LEVEL    |     REPORT     |                            COMMAND                             #
+#################################################################################################
+#  Functions  |  Cluster-wide  |  maqao lprof -df xp=/home/pavel/Documents/COURS/IATIC_4/AOA/A  #
+#  Functions  |  Per-node      |  maqao lprof -df -dn xp=/home/pavel/Documents/COURS/IATIC_4/A  #
+#  Functions  |  Per-process   |  maqao lprof -df -dp xp=/home/pavel/Documents/COURS/IATIC_4/A  #
+#  Functions  |  Per-thread    |  maqao lprof -df -dt xp=/home/pavel/Documents/COURS/IATIC_4/A  #
+#  Loops      |  Cluster-wide  |  maqao lprof -dl xp=/home/pavel/Documents/COURS/IATIC_4/AOA/A  #
+#  Loops      |  Per-node      |  maqao lprof -dl -dn xp=/home/pavel/Documents/COURS/IATIC_4/A  #
+#  Loops      |  Per-process   |  maqao lprof -dl -dp xp=/home/pavel/Documents/COURS/IATIC_4/A  #
+#  Loops      |  Per-thread    |  maqao lprof -dl -dt xp=/home/pavel/Documents/COURS/IATIC_4/A  #
+#################################################################################################
+

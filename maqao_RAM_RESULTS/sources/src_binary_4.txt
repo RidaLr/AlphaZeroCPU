@@ -1,0 +1,8 @@
+/home/pavel/Documents/COURS/IATIC_4/AOA/Alpha0_CPU//driver.c: 109 - 111
+--------------------------------------------------------------------------------
+
+109:     for (i = 0; i < n; i++)
+110:         for (j = 0; j < n; j++)
+111:             a[i][j] = (double)rand() / RAND_MAX;
+112: }
+113: 
