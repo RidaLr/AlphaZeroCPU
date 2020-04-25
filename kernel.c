@@ -90,13 +90,36 @@ float baseline(unsigned n, double a[n][n])
 
     return (float)s;
 }
-#elif defined OPT2
-
-/* OPT2 */
+#elif defined OPENMP
+/* loop unrolling OPTIMIZATION */
 float baseline(unsigned n, double a[n][n])
 {
-    //TODO
-    return n;
+    omp_set_num_threads(8);
+    unsigned i, j, k, l;
+    double s = 0.0, s0 = 0.0, s1 = 0.0, s2 = 0.0, s3 = 0.0, s4 = 0.0, s5 = 0.0, s6 = 0.0, s7 = 0.0, s8 = 0.0;
+    u64 new_n = n - (n%8);
+    #pragma omp parallel for private (j)
+    for (j = 0; j < new_n; j++)
+    {
+        for (i = 0; i < new_n; i+=8)
+        {       
+            s0 += a[i][j];
+            s1 += a[i][j+1];
+            s2 += a[i][j+2];
+            s3 += a[i][j+3];
+            s3 += a[i][j+4];
+            s3 += a[i][j+5];
+            s3 += a[i][j+6];
+        }
+    }
+    
+    #pragma omp parallel for
+    for (k = new_n; k < n; k++){
+        for (l = new_n; l < n; l++)
+            s8 += a[k][l]; 
+    }
+    s = s0+s1+s2+s3+s4+s5+s6+s7+s8;
+    return (float)s;
 }
 #elif defined RAM_LOOP_BLOCK
 /* RAM loop loop blocking OPTIMIZATION */
