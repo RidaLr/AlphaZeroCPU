@@ -1,0 +1,146 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Core(TM) i7-5600U CPU @ 2.60GHz
+CPU type:	Intel Core Broadwell processor
+CPU clock:	2.59 GHz
+--------------------------------------------------------------------------------
+res = 3600.000000
+9.64 cycles/itérations META N° 0 | rdtsc = 31225016
+ 
+res = 3600.000000
+9.24 cycles/itérations META N° 1 | rdtsc = 29936469
+ 
+res = 3600.000000
+9.64 cycles/itérations META N° 2 | rdtsc = 31228169
+ 
+res = 3600.000000
+9.98 cycles/itérations META N° 3 | rdtsc = 32321820
+ 
+res = 3600.000000
+10.12 cycles/itérations META N° 4 | rdtsc = 32794866
+ 
+res = 3600.000000
+9.78 cycles/itérations META N° 5 | rdtsc = 31691436
+ 
+res = 3600.000000
+10.05 cycles/itérations META N° 6 | rdtsc = 32566675
+ 
+res = 3600.000000
+8.81 cycles/itérations META N° 7 | rdtsc = 28535856
+ 
+res = 3600.000000
+10.33 cycles/itérations META N° 8 | rdtsc = 33462848
+ 
+res = 3600.000000
+9.98 cycles/itérations META N° 9 | rdtsc = 32321554
+ 
+res = 3600.000000
+9.94 cycles/itérations META N° 10 | rdtsc = 32208511
+ 
+res = 3600.000000
+9.20 cycles/itérations META N° 11 | rdtsc = 29810144
+ 
+res = 3600.000000
+11.22 cycles/itérations META N° 12 | rdtsc = 36342739
+ 
+res = 3600.000000
+9.24 cycles/itérations META N° 13 | rdtsc = 29931991
+ 
+res = 3600.000000
+9.26 cycles/itérations META N° 14 | rdtsc = 30004747
+ 
+res = 3600.000000
+10.11 cycles/itérations META N° 15 | rdtsc = 32748814
+ 
+res = 3600.000000
+9.90 cycles/itérations META N° 16 | rdtsc = 32091125
+ 
+res = 3600.000000
+10.64 cycles/itérations META N° 17 | rdtsc = 34460336
+ 
+res = 3600.000000
+9.68 cycles/itérations META N° 18 | rdtsc = 31365829
+ 
+res = 3600.000000
+10.06 cycles/itérations META N° 19 | rdtsc = 32606106
+ 
+res = 3600.000000
+9.28 cycles/itérations META N° 20 | rdtsc = 30070044
+ 
+res = 3600.000000
+10.49 cycles/itérations META N° 21 | rdtsc = 33990327
+ 
+res = 3600.000000
+9.99 cycles/itérations META N° 22 | rdtsc = 32360869
+ 
+res = 3600.000000
+9.65 cycles/itérations META N° 23 | rdtsc = 31272889
+ 
+res = 3600.000000
+9.29 cycles/itérations META N° 24 | rdtsc = 30097901
+ 
+res = 3600.000000
+10.76 cycles/itérations META N° 25 | rdtsc = 34847007
+ 
+res = 3600.000000
+9.24 cycles/itérations META N° 26 | rdtsc = 29934021
+ 
+res = 3600.000000
+9.52 cycles/itérations META N° 27 | rdtsc = 30854348
+ 
+res = 3600.000000
+12.08 cycles/itérations META N° 28 | rdtsc = 39153944
+ 
+res = 3600.000000
+9.44 cycles/itérations META N° 29 | rdtsc = 30576594
+ 
+res = 3600.000000
+9.23 cycles/itérations META N° 30 | rdtsc = 29897385
+ 
+[Stabilité des mesures = 0.110583%] mediane=31691436 min = 28535856 max = 39153944 INDEX_mediane = 15
+cycles/iter sur mediane = 9.781307
+--------------------------------------------------------------------------------
+Group 1: TLB_INSTR
++---------------------------+---------+--------+----------+--------+------------+
+|           Event           | Counter | Core 0 |  Core 1  | Core 2 |   Core 3   |
++---------------------------+---------+--------+----------+--------+------------+
+|     INSTR_RETIRED_ANY     |  FIXC0  |      0 | 15567892 |      0 | 7316813648 |
+|   CPU_CLK_UNHALTED_CORE   |  FIXC1  |      0 |  9155963 |      0 | 4477312637 |
+|    CPU_CLK_UNHALTED_REF   |  FIXC2  |      0 |  9273654 |      0 | 4300582156 |
+| ITLB_MISSES_CAUSES_A_WALK |   PMC0  |      0 |       13 |      0 |       4093 |
+| ITLB_MISSES_WALK_DURATION |   PMC1  |      0 |     4204 |      0 |     768480 |
++---------------------------+---------+--------+----------+--------+------------+
+
++--------------------------------+---------+------------+-----+------------+--------------+
+|              Event             | Counter |     Sum    | Min |     Max    |      Avg     |
++--------------------------------+---------+------------+-----+------------+--------------+
+|     INSTR_RETIRED_ANY STAT     |  FIXC0  | 7332381540 |   0 | 7316813648 |   1833095385 |
+|   CPU_CLK_UNHALTED_CORE STAT   |  FIXC1  | 4486468600 |   0 | 4477312637 |   1121617150 |
+|    CPU_CLK_UNHALTED_REF STAT   |  FIXC2  | 4309855810 |   0 | 4300582156 | 1.077464e+09 |
+| ITLB_MISSES_CAUSES_A_WALK STAT |   PMC0  |       4106 |   0 |       4093 |    1026.5000 |
+| ITLB_MISSES_WALK_DURATION STAT |   PMC1  |     772684 |   0 |     768480 |       193171 |
++--------------------------------+---------+------------+-----+------------+--------------+
+
++-----------------------------+--------+--------------+--------+--------------+
+|            Metric           | Core 0 |    Core 1    | Core 2 |    Core 3    |
++-----------------------------+--------+--------------+--------+--------------+
+|     Runtime (RDTSC) [s]     | 1.7241 |       1.7241 | 1.7241 |       1.7241 |
+|     Runtime unhalted [s]    |      0 |       0.0035 |      0 |       1.7260 |
+|         Clock [MHz]         |    -   |    2561.0682 |    -   |    2700.5870 |
+|             CPI             |    -   |       0.5881 |    -   |       0.6119 |
+|        L1 ITLB misses       |      0 |           13 |      0 |         4093 |
+|      L1 ITLB miss rate      |    -   | 8.350520e-07 |    -   | 5.593965e-07 |
+| L1 ITLB miss duration [Cyc] |    -   |     323.3846 |    -   |     187.7547 |
++-----------------------------+--------+--------------+--------+--------------+
+
++----------------------------------+--------------+--------------+--------------+--------------+
+|              Metric              |      Sum     |      Min     |      Max     |      Avg     |
++----------------------------------+--------------+--------------+--------------+--------------+
+|     Runtime (RDTSC) [s] STAT     |       6.8964 |       1.7241 |       1.7241 |       1.7241 |
+|     Runtime unhalted [s] STAT    |       1.7295 |            0 |       1.7260 |       0.4324 |
+|         Clock [MHz] STAT         |    5261.6552 |    2561.0682 |    2700.5870 |    1315.4138 |
+|             CPI STAT             |       1.2000 |       0.5881 |       0.6119 |       0.3000 |
+|        L1 ITLB misses STAT       |         4106 |            0 |         4093 |    1026.5000 |
+|      L1 ITLB miss rate STAT      | 1.394448e-06 | 5.593965e-07 | 8.350520e-07 | 3.486121e-07 |
+| L1 ITLB miss duration [Cyc] STAT |     511.1393 |     187.7547 |     323.3846 |     127.7848 |
++----------------------------------+--------------+--------------+--------------+--------------+
+

@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     FILE *data_file = NULL;
     FILE *medianes_file = NULL;
     data_file = fopen("data_results", "w");
-    medianes_file = fopen("RAM_results/GCC/ram_medianes", "a");
+    medianes_file = fopen("L1_results/GCC/L1_medianes", "a");//***************************************************mmlkj
 
     if (data_file == NULL)
     {

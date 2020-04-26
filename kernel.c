@@ -121,13 +121,13 @@ float baseline(unsigned n, double a[n][n])
     s = s0+s1+s2+s3+s4+s5+s6+s7+s8;
     return (float)s;
 }
-#elif defined RAM_LOOP_BLOCK
-/* RAM loop loop blocking OPTIMIZATION */
+#elif defined L1_LOOP_BLOCK
+/* L1 loop blocking OPTIMIZATION */
 float baseline(unsigned n, double a[n][n])
 {
     unsigned ii, jj, i, j;
     double s = 0.0;
-    #define TILE 2
+    #define TILE 30
 assert(n%TILE == 0);
 for (ii=0; ii<n; ii+=TILE)
     for (jj=0; jj<n; jj+=TILE)
